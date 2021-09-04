@@ -36,6 +36,7 @@ body {
   font-size:1em;
   font-weight: bold;
   border-radius: 10px;
+  display: inline-block;
   cursor: pointer;
   background-color: #f0f0f0;
 }

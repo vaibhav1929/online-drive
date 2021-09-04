@@ -15,8 +15,8 @@ const FileView = (props) =>{
         })
     };
     let fileDisplayName = props.file.name.split(".");
-    if(fileDisplayName.length > 1) fileDisplayName = fileDisplayName[1];
-    else fileDisplayName = props.file.name;
+    if(fileDisplayName.length > 1) fileDisplayName = fileDisplayName[fileDisplayName.length-1];
+    else fileDisplayName = "";
 
     return(
         <React.Fragment>
@@ -26,7 +26,7 @@ const FileView = (props) =>{
                     <div className="folder-card-image">
                         <img src={file_ic} alt="" width="72px"/>
 
-                        <span className="badge bg-danger sticky-badge">{fileDisplayName}</span>
+                        {fileDisplayName.length > 0?<span className="badge bg-danger sticky-badge">{fileDisplayName}</span>:<span></span>}
                     </div>
 
                     <div className="file-details">

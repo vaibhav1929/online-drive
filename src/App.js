@@ -6,7 +6,7 @@ import {jsonData,ROOT} from "./support/Data";
 import FloatingButton from "./FloatingButton";
 import ItemModal from "./modal/ItemModal";
 import uuid from "react-uuid";
-import {DIRECTORY, FILE} from "./support/Constants";
+import {DIRECTORY, FILE, VALID_FILE_REGEX} from "./support/Constants";
 import DeleteConfirmModal from "./modal/DeleteConfirmModal";
 
 const App = () => {
@@ -104,9 +104,9 @@ const App = () => {
         let fileName = e.target.value;
         setFileName(fileName);
         let currentParentId = directoryStack.current[directoryStack.current.length-1].id;
-
-        let filter = jsonData.find(item => item.parent === currentParentId && item.name === fileName);
+        let filter = jsonData.find(item => item.parent === currentParentId && item.name === fileName && item.type === FILE);
         let fileExists = fileName.trim().length === 0 || filter !== undefined;
+        fileExists = fileExists || VALID_FILE_REGEX.test(e.target.value) === false;
         setIsValidFile(!fileExists);
     };
 //------------------------------------------------------------------------------------
@@ -149,8 +149,9 @@ const App = () => {
         setDirName(dirName);
         let currentParentId = directoryStack.current[directoryStack.current.length-1].id;
 
-        let filter = jsonData.find(item => item.parent === currentParentId && item.name === dirName);
+        let filter = jsonData.find(item => item.parent === currentParentId && item.name === dirName && item.type === DIRECTORY);
         let dirExists = dirName.trim().length === 0 || filter !== undefined;
+        dirExists = dirExists || VALID_FILE_REGEX.test(e.target.value) === false;
         setIsValidDir(!dirExists);
     };
 //--------------------------------------------------------------------------------------

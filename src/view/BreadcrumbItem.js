@@ -11,7 +11,7 @@ const BreadcrumbItem = (props)=>{
     if(props.isCompressed){
         return (
             <React.Fragment>
-                <span className="m-1 breadcrumb-badge text-dark p-2" onClick={handleContextMenu}>{props.path.name}</span>\
+                <div className="m-1 breadcrumb-badge text-dark p-2" onClick={handleContextMenu}>{props.path.name}</div>\
 
                 <Menu id={"compressor"} className="col-1">
                     {props.path.compressedPath.map((item, index)=>{
@@ -29,17 +29,20 @@ const BreadcrumbItem = (props)=>{
     else{
         return props.isLast?
             (
-                <span className="m-1 breadcrumb-badge text-dark p-2" onClick={()=>{props.onClick(props.path)}}>
-           <img className="folder-card-image" src={folder_ic} alt="" width="16px"/> {props.path.name}
-        </span>
+                <div className="m-1 breadcrumb-badge text-dark p-2" onClick={()=>{props.onClick(props.path)}}>
+                    <img className="folder-card-image" src={folder_ic} alt="" width="16px"/> {props.path.name}
+                </div>
             )
             :
             (
-                <span onClick={()=>{props.onClick(props.path)}}>
-            <span className="m-1 breadcrumb-badge text-primary p-2">
-                {props.path.name}
-            </span> <h5 style={{display:"inline"}}> \ </h5>
-        </span>
+                <React.Fragment>
+                <div className="m-1 breadcrumb-badge text-primary p-2" onClick={()=>{props.onClick(props.path)}}>
+                    <span>
+                        {props.path.name}
+                    </span>
+                </div>
+                <h5 style={{display:"inline"}}> \ </h5>
+                </React.Fragment>
             )
     }
 

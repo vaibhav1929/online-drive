@@ -24,7 +24,9 @@ const ItemModal = (props) => {
                 <i onClick={props.closeFileModal} className="fas fa-times-circle position-absolute top-0 end-0 fs-4 text-muted"></i>
 
                 {!props.validFile && inputRef.current && inputRef.current.value.length > 0?
-                    <div className="alert-sm alert-danger m-1 text-center rounded">File already exists!</div>:null}
+                    <div className="alert-sm alert-danger m-1 text-center rounded">
+                        Name already exists or invalid!
+                    </div>:null}
 
                     <div>
                         <label htmlFor="file_name" className="form-label">{props.type} name</label>
